@@ -4,6 +4,8 @@ The Pet Management System is a simple application built using Spring Boot that a
 
 ## Project Structure
 
+<img src="https://github.com/Abhishek1061/Pet_Management_System_Project/blob/master/File_Structure/Structure.png" width=300, height=400>
+
 ## Dependencies
 
 The project uses the following dependencies:
