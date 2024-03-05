@@ -32,19 +32,23 @@ public class PetController {
 	}
 
 	@PostMapping("/added")
-	public ResponseEntity<Pet> addPet(@ModelAttribute Pet pet) {
+	public ResponseEntity<Pet> addPet(@RequestBody Pet pet) {
 		Pet addedPet = pts.addPet(pet);
 		return new ResponseEntity<>(addedPet, HttpStatus.CREATED);
 	}
 
 	@PutMapping("/update/{id}")
-	public ResponseEntity<Pet> updatePet(@PathVariable int id, @RequestBody Pet petDetails) {
+	public ResponseEntity<Pet> updatePet(@PathVariable long id, @RequestBody Pet petDetails) {
 		Pet updatedPet = pts.update(id, petDetails);
-		return updatedPet != null ? ResponseEntity.ok(updatedPet) : ResponseEntity.notFound().build();
+		if(updatedPet != null) {
+			return ResponseEntity.ok(updatedPet);
+		}else {
+			return ResponseEntity.notFound().build();
+		}
 	}
 
 	@DeleteMapping("/deleted/{id}")
-	public ResponseEntity<Pet> deletePet(@PathVariable int id) {
+	public ResponseEntity<Pet> deletePet(@PathVariable long id) {
 		pts.delete(id);
 		return ResponseEntity.noContent().build();
 	}

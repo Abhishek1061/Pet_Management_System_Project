@@ -1,6 +1,5 @@
 package com.example.demo.service;
 
-
 import java.util.List;
 import java.util.Optional;
 
@@ -25,27 +24,29 @@ public class PetService {
 	public Pet addPet(Pet pet) {
 		return repo.save(pet);
 	}
-	
-	public Pet update(long id , Pet petDetails) {
+
+	public Pet update(long id, Pet petDetails) {
 		Optional<Pet> optionalPet = repo.findById(id);
-		
-		if(optionalPet.isPresent()) {
+		if (optionalPet.isPresent()) {
 			Pet pet = optionalPet.get();
 			pet.setName(petDetails.getName());
 			pet.setAge(petDetails.getAge());
 			pet.setBreed(petDetails.getBreed());
 			pet.setDescription(petDetails.getDescription());
-			
-			return repo.save(pet);
-		}else {
+			return repo.save(pet); // Remove this line
+		} else {
 			System.out.println("Entered Pet Details not found");
 			return null;
-		}	
+		}
 	}
-	
+
 	public String delete(long id) {
 		repo.deleteById(id);
 		return "Deleted id" + id + " Successfully";
 	}
+
+//	public void delete(long id) {
+//		repo.deleteById(id);
+//	}
 
 }
